@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$NNG SOVEREIGN TERMINAL 2050</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg: #09090b;
+            --panel: #18181b;
+            --accent: #22c55e;
+            --text-main: #f4f4f5;
+            --text-muted: #a1a1aa;
+            --border: #27272a;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.05);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        h1,
+        h2 {
+            margin: 0;
+            color: var(--accent);
+        }
+
+        .blink {
+            animation: blinker 1s linear infinite;
+            color: var(--accent);
+        }
+
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            background: rgba(34, 197, 94, 0.05);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 5px;
+            word-break: break-all;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+
+        th {
+            color: var(--text-muted);
+        }
+
+        .addr {
+            color: #3b82f6;
+            cursor: pointer;
+        }
+
+        .addr:hover {
+            text-decoration: underline;
+        }
+
+        .chart-container {
+            flex-grow: 1;
+            position: relative;
+            min-height: 300px;
+        }
+
+        .logs {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background: #000;
+            padding: 10px;
+            border-radius: 4px;
+            height: 150px;
+            overflow-y: auto;
+            border: 1px solid var(--border);
+        }
+
+        .btn {
+            background: var(--accent);
+            color: #000;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: #16a34a;
+        }
+
+        @media (max-width: 1000px) {
+            body {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- LEFT COLUMN -->
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div class="panel" style="flex-grow: 1;">
+            <div class="header">
+                <h2>$NNG / SOL <span style="font-size: 0.8rem; color: var(--text-muted);">PRICE PROJECTION
+                        (2026-2050)</span></h2>
+                <div class="blink">LIVE ALGORITHMIC MODELING</div>
+            </div>
+            <div class="chart-container">
+                <canvas id="priceChart"></canvas>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="header">
+                <h2>ON-CHAIN FOOTPRINT</h2>
+            </div>
+            <div class="stat-grid">
+                <div class="stat-box">
+                    <div class="stat-label">GENESIS TX HASH (SOLAYER DEVNET)</div>
+                    <div class="stat-value addr">5rFNC1nbxAQsbaKTFR2JABnT3xwQ89ge9Z...</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">CONTRACT ADDRESS (CA)</div>
+                    <div class="stat-value addr"
+                        onclick="window.open('https://explorer.solana.com/address/3daMX7utMqBT4j2YqUib2ZwoWxMC1gmssQU2qRWnC1uT?cluster=custom&customUrl=https://devnet-rpc.solayer.org')">
+                        3daMX7utMqBT4j2YqUib2ZwoWxMC1gmssQU2qRWnC1uT</div>
+                </div>
+            </div>
+            <div class="logs" id="logWindow">
+                > Initializing Protocol Scan...<br>
+                > Connecting to devnet-rpc.solayer.org...<br>
+                > Fetching Block: 12,704,758<br>
+                > Genesis Signature Verified.<br>
+                > Token-2022 Extensions: ACTV [TransferFee, MetadataPointer, ConfidentialTransfers]<br>
+                > Authorities: MINT [REVOKED], FREEZE [REVOKED]<br>
+                > STATUS: IMMUTABLE SOVEREIGNTY ACHIEVED.<br>
+            </div>
+            <div style="margin-top: 15px;">
+                <a href="https://explorer.solana.com/address/3daMX7utMqBT4j2YqUib2ZwoWxMC1gmssQU2qRWnC1uT?cluster=custom&customUrl=https://devnet-rpc.solayer.org"
+                    target="_blank" class="btn">VERIFY ON EXPLORER</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div class="panel">
+            <div class="header">
+                <h2>PROTOCOL METRICS</h2>
+            </div>
+            <div class="stat-grid" style="grid-template-columns: 1fr;">
+                <div class="stat-box" style="border-color: rgba(59, 130, 246, 0.5);">
+                    <div class="stat-label">TOTAL SUPPLY (FIXED CAP)</div>
+                    <div class="stat-value" style="color: #3b82f6;">1,000,000,000 $NNG</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">PROTOCOL FEE TIER</div>
+                    <div class="stat-value">0.1% (Auto-Burn Enabled)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">QUANTUM-RESISTANCE</div>
+                    <div class="stat-value" style="color: var(--accent);">ENABLED (ZK Metadata)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel" style="flex-grow: 1;">
+            <div class="header">
+                <h2>TOP HOLDERS (PROSPECTUS)</h2>
+            </div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 15px;">Data distributed
+                programmatically at genesis. Protocol autonomous rule enforcement active.</div>
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>RANK</th>
+                            <th>WALLET</th>
+                            <th>HOLDINGS</th>
+                            <th>%</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="addr" title="Public AMM Liquidity Pool">AMM_POOL_...</td>
+                            <td>700,000,000</td>
+                            <td>70%</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td class="addr" title="Autonomous Protocol Treasury">DAO_VAULT_...</td>
+                            <td>250,000,000</td>
+                            <td>25%</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td class="addr" title="Satoshi Wallet 2.0 (Dev)">35z7X59rtyts...</td>
+                            <td>50,000,000</td>
+                            <td>5%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div
+                style="margin-top: auto; padding-top: 20px; font-size: 0.75rem; color: var(--text-muted); text-align: center;">
+                Zero-Admin Protocol. Distribution immutable.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Draw the 2050 Projection Chart
+        const ctx = document.getElementById('priceChart').getContext('2d');
+
+        // Generate predictive arc (Deflationary pressure + Network effect)
+        const labels = Array.from({ length: 25 }, (_, i) => 2026 + i);
+        const data = labels.map((year, i) => {
+            // Exponential compounding projection
+            return 0.01 * Math.pow(1.35, i) * (1 + (Math.random() * 0.1 - 0.05));
+        });
+
+        // Gradient fill
+        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, 'rgba(34, 197, 94, 0.5)');
+        gradient.addColorStop(1, 'rgba(34, 197, 94, 0.0)');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '$NNG Value Projection (USD)',
+                    data: data,
+                    borderColor: '#22c55e',
+                    borderWidth: 2,
+                    backgroundColor: gradient,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#09090b',
+                    pointBorderColor: '#22c55e',
+                    pointRadius: 3,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: '#18181b',
+                        titleColor: '#22c55e',
+                        bodyColor: '#f4f4f5',
+                        borderColor: '#27272a',
+                        borderWidth: 1
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { color: '#27272a', drawBorder: false },
+                        ticks: { color: '#a1a1aa' }
+                    },
+                    y: {
+                        grid: { color: '#27272a', drawBorder: false },
+                        ticks: {
+                            color: '#a1a1aa',
+                            callback: function (value) { return '$' + value.toFixed(2); }
+                        }
+                    }
+                },
+                interaction: {
+                    mode: 'nearest',
+                    axis: 'x',
+                    intersect: false
+                }
+            }
+        });
+
+        // Matrix log effect
+        const logs = document.getElementById('logWindow');
+        setInterval(() => {
+            const hash = Math.random().toString(36).substring(2, 15);
+            const entry = document.createElement('div');
+            entry.style.color = Math.random() > 0.8 ? '#22c55e' : 'var(--text-muted)';
+            entry.innerHTML = `> Validating Proof-of-Burn [block: ${Math.floor(Math.random() * 1000000)}] ... OK (${hash})`;
+            logs.appendChild(entry);
+            logs.scrollTop = logs.scrollHeight;
+
+            if (logs.children.length > 50) {
+                logs.removeChild(logs.firstChild);
+            }
+        }, 2500);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+node_modules/
+.env
+*.log
+wallet.json
+id.json
+# Solana CLI config
+my_config.yml
+# Temporary reports
+final_output.log
+pdf_log.txt
+genesis_cli.txt
+NNG_GENESIS_REPORT.txt
+SUCCESS_MINT_*.txt
+*.pdf
