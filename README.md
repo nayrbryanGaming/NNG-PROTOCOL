@@ -1,34 +1,51 @@
-# nayrbryanGaming ($NNG) - Sovereign Protocol Genesis
+# NNG Protocol: The Sovereign Autonomous Utility Layer
 
-![Status](https://img.shields.io/badge/Status-Sovereign-green) ![Network](https://img.shields.io/badge/Network-Solana_Devnet-blue) ![Standard](https://img.shields.io/badge/Standard-Token--2022-orange)
+![Banner](https://img.shields.io/badge/Status-Sovereign-green?style=for-the-badge) ![Network](https://img.shields.io/badge/Blockchain-Solana_Devnet-blue?style=for-the-badge) ![Standard](https://img.shields.io/badge/Standard-Token--2022-orange?style=for-the-badge)
 
-## 🌌 Overview
-$NNG is a decentralized, autonomous utility protocol engineered for the year 2050 and beyond. Built on the Solana **Token-2022 (Token Extensions)** program, $NNG implements advanced features intended for long-term economic stability and sovereign ownership.
+## 🌌 Vision: The Era of Ownerless Infrastructure
 
-## 🛠 Technical Specifications
-- **Token Name**: nayrbryanGaming
-- **Symbol**: $NNG
-- **Total Supply**: 1,000,000,000 (1 Billion) - **HARD CAP**
-- **Decimals**: 9
-- **Protocol**: SPL Token-2022
+The NNG Protocol is not just a token; it is an experiment in **Absolute Autonomy**. In a world trending towards centralized control, $NNG represents a pivot back to the core ethos of decentralized finance—immutable, ownerless, and sovereign.
 
-### Core Extensions
-- **Transfer Fee**: 0.1% (10 basis points)
-- **Max Fee**: 5,000 NNG
-- **Metadata Pointer**: On-chain metadata integration
-- **Satoshi 2.0 Mode**: All authorities (Mint, Freeze, Update) are permanently revoked (null).
+We have engineered $NNG to be a digital commodity that operates without human intervention. By utilizing the Solana Token-2022 (Token Extensions) standard, we've inscribed the economic laws directly into the blockchain.
 
-## 🚀 Vision: Satoshi 2.0
-$NNG is designed to be ownerless. Following the "Genesis Protocol," the creator has stepped back, permanently disabling the ability to inflate the supply or freeze accounts. The protocol is immutable.
+## 🛠 Technical Architecture
 
-## 📂 Project Structure
-- `GENESIS_DEFINITIVE.js`: The final on-chain activation protocol.
-- `NNG_Sovereign_Protocol_2050.pdf`: Official PDF Portfolio including Whitepaper and Genesis Post.
-- `NNG_Whitepaper.md`: Detailed technical and economic specification.
-- `package.json`: Protocol dependencies and dev environment.
+$NNG is built on the cutting edge of the Solana ecosystem, leveraging advanced extensions to define its behavior.
+
+| Parameter | Specification |
+| :--- | :--- |
+| **Token Name** | nayrbryanGaming |
+| **Symbol** | $NNG |
+| **Supply Cap** | 1,000,000,000 (1 Billion) |
+| **Decimals** | 9 |
+| **Program ID** | `TokenzQdBNbLqP5VEhdkThT9PzZBm9GGr359Cr9` |
+
+### Core Protocol Extensions
+
+1.  **Sovereign Mode (Satoshi 2.0)**: All administrative authorities—Mint, Freeze, and Account Management—have been permanently revoked. No entity, including the creator, can ever inflate the supply, freeze user accounts, or modify the protocol's core parameters. $NNG is effectively a public digital good.
+2.  **Transfer Fee Dynamics**: A native **0.1% (10 bps)** fee is applied to every transaction. This fee is managed purely by the protocol, intended for autonomous distribution or burn mechanisms depending on future network integrations.
+3.  **On-Chain Metadata**: Protocol identity is inscribed directly into the Mint account via the Metadata Pointer extension, ensuring perpetual verifiability without reliance on centralized storage.
+
+## 💎 The Economic Constitution
+
+- **Immutable Supply**: The 1 Billion hard cap is final.
+- **Zero Centralization**: No update authority exists.
+- **Protocol Enforced Fees**: Transaction gravity is maintainable and predictable.
+
+## 🚀 Deployment Status
+
+The protocol is live and verified on the Solana Devnet. The transition to absolute autonomy has been executed.
+
+```bash
+# Definitive Deployment Signature
+# Logic: GENESIS_DEFINITIVE.js
+# Authority: REVOKED (null)
+```
 
 ## ⚖️ License
-Released under the MIT License - The protocol is now a public digital commodity.
+
+The NNG Protocol is released under the **MIT License**. It is a sovereign digital commodity for the global gaming and utility ecosystem.
 
 ---
-**$NNG: Secure. Autonomous. Eternal.**
+**$NNG: Autonomous. Immutable. Eternal.**  
+*Built for 2050 and beyond.*
